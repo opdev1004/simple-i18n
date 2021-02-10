@@ -8,13 +8,13 @@ npm i op-i18n
 
 ## 👩‍🎓 Tutorial
 ### Most of Case
-- en-US.json
+- en_US.json
 ```
 {
     "name": "Victor"
 }
 ```
-- ko-KR.json
+- ko_KR.json
 ```
 {
     "name": "빅터"
@@ -61,10 +61,12 @@ console.log(i18n.$t("name", "en_US"));
 
 ### Options
 Requires locales, directory, defaultLocale in options. Note that _ is used instead of - for key in options.
+
 js key | O/X 
 -------|-----
 ko_KR  | O 😇
 ko-KR  | X ☠️
+
 ```
 const I18n = require('op-i18n');
 
@@ -96,7 +98,7 @@ const i18n = new I18n(options);
 
 ### Advanced $t()
 You can use . notation just like how you get value out of js object:
-- ko-KR.json
+- ko_KR.json
 ```
 {
     "name":
@@ -106,7 +108,7 @@ You can use . notation just like how you get value out of js object:
     }
 }
 ```
-- en-US.json
+- en_US.json
 ```
 {
     "name":
