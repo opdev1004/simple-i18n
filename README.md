@@ -52,11 +52,11 @@ const i18n = new I18n(options);
 // Change locale to Korean
 i18n.updateDefaultLocale("ko_KR");
 console.log(i18n.$t());
-// output: { name: 'Victor' }
+// output: { name: '빅터' }
 console.log(i18n.$t("name"));
-// output: Victor
-console.log(i18n.$t("name", "en_US"));
 // output: 빅터
+console.log(i18n.$t("name", "en_US"));
+// output: Victor
 ```
 
 ### Options

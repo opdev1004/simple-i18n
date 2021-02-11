@@ -1,6 +1,6 @@
 {
   "name": "op-i18n",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Easy Node.js i18n with json locale file storage. No fancy grammar.",
   "main": "src/index.js",
   "bin": "src/index.js",
