@@ -128,6 +128,13 @@ For getting value from specified locale:
 console.log(i18n.$t("name.first", "ko_KR"));
 //output: 빅터
 ```
+You can get whole js object with empty key "".
+```
+console.log(i18n.$t(""));
+//output: { name: { first: "Victor", last: "Park" } }
+console.log(i18n.$t("", "ko_KR"));
+//output: { name: { first: "빅터", last: "박" } }
+```
 
 ## 📖 op-i18n Document
 ### .$t()

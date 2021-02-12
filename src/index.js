@@ -36,14 +36,16 @@ class i18n{
             }
             else if(numberOfArgs == 1)
             {
-                return eval('this.defaultTranslation.' + arguments[0]);
+                if(arguments[0] == "") return this.defaultTranslation;
+                else return eval('this.defaultTranslation.' + arguments[0]);
             }
             else if(numberOfArgs == 2)
             {
                 const filepath = path.resolve(this.directory, this.locales[arguments[1]].file);
                 const jsonObj = fs.readFileSync(filepath);
                 const translation = JSON.parse(jsonObj);
-                return eval('translation.' + arguments[0]);
+                if(arguments[0] == "") return translation;
+                else return eval('translation.' + arguments[0]);
             }
             else
             {

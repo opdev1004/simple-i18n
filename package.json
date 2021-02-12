@@ -1,6 +1,6 @@
 {
   "name": "op-i18n",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Easy Node.js i18n with json locale file storage. No fancy grammar.",
   "main": "src/index.js",
   "bin": "src/index.js",
@@ -22,7 +22,8 @@
     "translation",
     "localize",
     "localise",
-    "translate"
+    "translate",
+    "electron"
   ],
   "author": "Victor Chanil Park",
   "license": "MIT",

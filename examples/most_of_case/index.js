@@ -26,7 +26,9 @@ const i18n = new I18n(options);
 
 i18n.updateDefaultLocale("ko_KR");
 console.log(i18n.$t());
+console.log(i18n.$t(""));
 console.log(i18n.$t("name"));
+console.log(i18n.$t("", "en_US"));
 console.log(i18n.$t("name", "en_US"));
 console.log(i18n.$t("fullname.first"));
 console.log(i18n.$t("fullname.last", "en_US"));
