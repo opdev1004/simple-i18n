@@ -22,6 +22,7 @@ npm i op-i18n
 ```
 - index.js
 ```
+const path = require('path');
 const I18n = require('op-i18n');
 
 // Note that '_' is used instead of '-' for key in options below.
@@ -68,6 +69,7 @@ ko_KR  | O 😇
 ko-KR  | X ☠️
 
 ```
+const path = require('path');
 const I18n = require('op-i18n');
 
 // Note that '_' is used instead of '-' for key in options below.
@@ -120,6 +122,34 @@ You can use . notation just like how you get value out of js object:
 ```
 - index.js
 ```
+const path = require('path');
+const I18n = require('op-i18n');
+
+// Note that '_' is used instead of '-' for key in options below.
+// eg. ko-KR:{} (X), ko_KR:{} (O)
+const options =
+{
+  locales:
+  {
+      ko_KR:
+      {
+        name: '한국어',
+        iso: 'ko-KR',
+        file: 'ko_KR.json'
+      },
+      en_US:
+      {
+        name: 'English',
+        iso: 'en-US',
+        file: 'en_US.json'
+      }
+  },
+  directory: path.resolve(__dirname, 'locales/'),
+  defaultLocale: 'en_US',
+}
+
+const i18n = new I18n(options);
+
 console.log(i18n.$t("name.first"));
 //output: Victor
 ```
