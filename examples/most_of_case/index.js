@@ -35,3 +35,4 @@ console.log(i18n.$t("fullname.last", "en_US"));
 console.log(i18n.$t({ locale: "en_US", key:"fullname.last" }));
 console.log(i18n.$t({ locale: "ko_KR", key:"fullname.first" }));
 console.log(i18n.$t({ key:"fullname.first" }));
+console.log(i18n.$t({ locale: "ko_KR" }));

@@ -54,6 +54,14 @@ class i18n{
                     }
 
                 }
+                else if(arguments[0].locale !== undefined)
+                {
+                    const filepath = path.resolve(this.directory, this.locales[arguments[0].locale].file);
+                    const jsonObj = fs.readFileSync(filepath);
+                    const translation = JSON.parse(jsonObj);
+                    
+                    return translation;
+                }
                 else if(arguments[0] === "") return this.defaultTranslation;
                 else return eval('this.defaultTranslation.' + arguments[0]);
             }
