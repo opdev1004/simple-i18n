@@ -36,7 +36,25 @@ class i18n{
             }
             else if(numberOfArgs == 1)
             {
-                if(arguments[0] == "") return this.defaultTranslation;
+                if(arguments[0].key !== undefined)
+                {
+                    if(arguments[0].locale !== undefined)
+                    {
+                        const filepath = path.resolve(this.directory, this.locales[arguments[0].locale].file);
+                        const jsonObj = fs.readFileSync(filepath);
+                        const translation = JSON.parse(jsonObj);
+
+                        if(arguments[0].key === "") return translation;
+                        else return eval('translation.' + arguments[0].key);
+                    }
+                    else
+                    {
+                        if(arguments[0].key === "") return this.defaultTranslation;
+                        else return eval('this.defaultTranslation.' + arguments[0].key);
+                    }
+
+                }
+                else if(arguments[0] === "") return this.defaultTranslation;
                 else return eval('this.defaultTranslation.' + arguments[0]);
             }
             else if(numberOfArgs == 2)
@@ -44,7 +62,8 @@ class i18n{
                 const filepath = path.resolve(this.directory, this.locales[arguments[1]].file);
                 const jsonObj = fs.readFileSync(filepath);
                 const translation = JSON.parse(jsonObj);
-                if(arguments[0] == "") return translation;
+                
+                if(arguments[0] === "") return translation;
                 else return eval('translation.' + arguments[0]);
             }
             else

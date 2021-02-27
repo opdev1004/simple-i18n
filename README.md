@@ -99,6 +99,8 @@ const i18n = new I18n(options);
 ```
 
 ### Advanced $t()
+
+#### Regular
 You can use . notation just like how you get value out of js object:
 - ko_KR.json
 ```
@@ -165,6 +167,14 @@ console.log(i18n.$t(""));
 console.log(i18n.$t("", "ko_KR"));
 //output: { name: { first: "빅터", last: "박" } }
 ```
+#### Using Object
+You can use object to get translation as well. { locale: "", key: "" }.
+```
+console.log(i18n.$t( { key:"name.first" } ));
+//output: Victor
+console.log(i18n.$t( { locale: "ko_KR", key:"name.first" } ));
+//output: 빅터
+```
 
 ## 📖 op-i18n Document
 ### .$t()
@@ -174,6 +184,10 @@ return default translation in js object. Uses .getDefaultTranslation()
 ### .$t(string:key)
 ```
 return value according to key from default translation in js object
+```
+### .$t(object:{ key: string:key, locale: string:locale })
+```
+return value according to key and locale in object.
 ```
 ### .$t(string:key, string:locale key)
 ```
