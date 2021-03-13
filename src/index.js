@@ -27,57 +27,71 @@ class i18n{
 
     $t(){
         try
-        {
-            const args = arguments;
-            const numberOfArgs = args.length;
-            if(numberOfArgs == 0)
+        {   
+            const arg0 = arguments[0];
+            
+            if(arg0 === undefined) // when argument is empty
             {
                 return this.defaultTranslation;
             }
-            else if(numberOfArgs == 1)
+            else if(typeof arg0  === 'string') // When string is given as a key
             {
-                if(arguments[0].key !== undefined)
+                const [key , locale] = arguments;
+
+                if(locale === undefined)
                 {
-                    if(arguments[0].locale !== undefined)
+                    if(key === "") return this.defaultTranslation;
+                    else
                     {
-                        const filepath = path.resolve(this.directory, this.locales[arguments[0].locale].file);
+                        return eval('this.defaultTranslation.' + key);
+                    }
+                }
+                else if(typeof locale === 'string')
+                {
+                    const filepath = path.resolve(this.directory, this.locales[locale].file);
+                    const jsonObj = fs.readFileSync(filepath);
+                    const translation = JSON.parse(jsonObj);
+                    
+                    if(key === "") return translation;
+                    else return eval('translation.' + key);
+                }
+            }
+            else if(typeof arg0.key === 'string' || typeof arg0.locale === 'string') // when object is given as a key and locale
+            {
+                const { key, locale } = arg0;
+
+                if(key !== undefined)
+                {
+                    if(locale !== undefined)
+                    {
+                        const filepath = path.resolve(this.directory, this.locales[locale].file);
                         const jsonObj = fs.readFileSync(filepath);
                         const translation = JSON.parse(jsonObj);
 
-                        if(arguments[0].key === "") return translation;
-                        else return eval('translation.' + arguments[0].key);
+                        if(key === "") return translation;
+                        else return eval(`translation.${key}`);
                     }
                     else
                     {
-                        if(arguments[0].key === "") return this.defaultTranslation;
-                        else return eval('this.defaultTranslation.' + arguments[0].key);
+                        if(key === "") return this.defaultTranslation;
+                        else return eval(`this.defaultTranslation.${key}`);
                     }
 
                 }
-                else if(arguments[0].locale !== undefined)
+                else if(locale !== undefined)
                 {
-                    const filepath = path.resolve(this.directory, this.locales[arguments[0].locale].file);
+                    const filepath = path.resolve(this.directory, this.locales[locale].file);
                     const jsonObj = fs.readFileSync(filepath);
                     const translation = JSON.parse(jsonObj);
                     
                     return translation;
                 }
-                else if(arguments[0] === "") return this.defaultTranslation;
-                else return eval('this.defaultTranslation.' + arguments[0]);
-            }
-            else if(numberOfArgs == 2)
-            {
-                const filepath = path.resolve(this.directory, this.locales[arguments[1]].file);
-                const jsonObj = fs.readFileSync(filepath);
-                const translation = JSON.parse(jsonObj);
-                
-                if(arguments[0] === "") return translation;
-                else return eval('translation.' + arguments[0]);
             }
             else
             {
-                throw "\nsimple-i18n Error: $t() cannot take more than 2 arguments.\n";
+                throw "\nsimple-i18n Error: Wrong arguments or unknown error. Please make sure following the instructions (Tutorial) from https://github.com/opdev1004/op-i18n.\n";
             }
+
         }
         catch(error)
         {
